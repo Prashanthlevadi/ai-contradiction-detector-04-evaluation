@@ -1,0 +1,202 @@
+[
+  {
+    "id": "T01",
+    "topic": "joining_date",
+    "expected": "compatible",
+    "description": "Same joining date",
+    "claim_a": {"subject": "Employee", "attribute": "joining_date", "value": "2024-01-15", "source_text": "Joined on January 15, 2024.", "source": "Doc A"},
+    "claim_b": {"subject": "Employee", "attribute": "joining_date", "value": "2024-01-15", "source_text": "Joining Date: 15 Jan 2024.", "source": "Doc B"}
+  },
+  {
+    "id": "T02",
+    "topic": "joining_date",
+    "expected": "contradiction",
+    "description": "Different joining dates",
+    "claim_a": {"subject": "Employee", "attribute": "joining_date", "value": "2024-01-15", "source_text": "Joined on January 15, 2024.", "source": "Doc A"},
+    "claim_b": {"subject": "Employee", "attribute": "joining_date", "value": "2023-06-01", "source_text": "Joined on June 1, 2023.", "source": "Doc B"}
+  },
+  {
+    "id": "T03",
+    "topic": "project_budget",
+    "expected": "compatible",
+    "description": "Same project budget",
+    "claim_a": {"subject": "Project", "attribute": "project_budget", "value": 50000, "source_text": "Budget is $50,000.", "source": "Doc A"},
+    "claim_b": {"subject": "Project", "attribute": "project_budget", "value": 50000, "source_text": "Budget allocated: 50,000 USD.", "source": "Doc B"}
+  },
+  {
+    "id": "T04",
+    "topic": "project_budget",
+    "expected": "contradiction",
+    "description": "Different project budgets",
+    "claim_a": {"subject": "Project", "attribute": "project_budget", "value": 50000, "source_text": "Budget is $50,000.", "source": "Doc A"},
+    "claim_b": {"subject": "Project", "attribute": "project_budget", "value": 75000, "source_text": "Budget approved: $75,000.", "source": "Doc B"}
+  },
+  {
+    "id": "T05",
+    "topic": "certifications",
+    "expected": "insufficient_information",
+    "description": "Fact appears in only one source",
+    "claim_a": {"subject": "Candidate", "attribute": "certifications", "value": "AWS Certified Architect", "source_text": "Holds AWS Architect certificate.", "source": "Doc A"},
+    "claim_b": {"subject": "Candidate", "attribute": "certifications", "value": null, "source_text": "Certification records not submitted.", "source": "Doc B"}
+  },
+  {
+    "id": "T06",
+    "topic": "degree_status",
+    "expected": "contradiction",
+    "description": "Completed vs not completed",
+    "claim_a": {"subject": "Education", "attribute": "degree_status", "value": "Completed", "source_text": "Completed degree in June 2024.", "source": "Doc A"},
+    "claim_b": {"subject": "Education", "attribute": "degree_status", "value": "Incomplete / Dropped Out", "source_text": "Student withdrew without completing degree.", "source": "Doc B"}
+  },
+  {
+    "id": "T07",
+    "topic": "role_responsibilities",
+    "expected": "compatible",
+    "description": "Different wording, same meaning",
+    "claim_a": {"subject": "Job", "attribute": "role_responsibilities", "value": "NLP Pipeline Development", "source_text": "Built natural language processing pipelines.", "source": "Doc A"},
+    "claim_b": {"subject": "Job", "attribute": "role_responsibilities", "value": "NLP Pipeline Development", "source_text": "Engineered text processing AI workflows.", "source": "Doc B"}
+  },
+  {
+    "id": "T08",
+    "topic": "current_location",
+    "expected": "contradiction",
+    "description": "Bengaluru vs Hyderabad for same current location",
+    "claim_a": {"subject": "Candidate", "attribute": "current_location", "value": "Bengaluru, India", "source_text": "Current residence is Bengaluru.", "source": "Doc A"},
+    "claim_b": {"subject": "Candidate", "attribute": "current_location", "value": "Hyderabad, India", "source_text": "Residing in Hyderabad.", "source": "Doc B"}
+  },
+  {
+    "id": "T09",
+    "topic": "performance_rating",
+    "expected": "insufficient_information",
+    "description": "Opinion with no factual basis",
+    "claim_a": {"subject": "Employee", "attribute": "performance_rating", "value": "Outstanding worker", "source_text": "The manager believes he was an outstanding worker.", "source": "Doc A"},
+    "claim_b": {"subject": "Employee", "attribute": "performance_rating", "value": null, "source_text": "No quantifiable evaluation metric on file.", "source": "Doc B"}
+  },
+  {
+    "id": "T10",
+    "topic": "job_role",
+    "expected": "contradiction",
+    "description": "Different job role for same period",
+    "claim_a": {"subject": "Employee", "attribute": "job_role", "value": "AI Research Intern", "source_text": "Employed as AI Research Intern.", "source": "Doc A"},
+    "claim_b": {"subject": "Employee", "attribute": "job_role", "value": "Senior Product Manager", "source_text": "Position held: Senior Product Manager.", "source": "Doc B"}
+  },
+  {
+    "id": "T11",
+    "topic": "effective_date",
+    "expected": "compatible",
+    "description": "Dates in different formats (01/02/2025 vs February 1, 2025)",
+    "claim_a": {"subject": "Agreement", "attribute": "effective_date", "value": "2025-02-01", "source_text": "Effective Date: 01/02/2025.", "source": "Doc A"},
+    "claim_b": {"subject": "Agreement", "attribute": "effective_date", "value": "2025-02-01", "source_text": "Effective on February 1, 2025.", "source": "Doc B"}
+  },
+  {
+    "id": "T12",
+    "topic": "grant_amount",
+    "expected": "compatible",
+    "description": "Numbers as words vs digits (fifty thousand vs 50000)",
+    "claim_a": {"subject": "Grant", "attribute": "grant_amount", "value": 50000, "source_text": "Awarded fifty thousand dollars.", "source": "Doc A"},
+    "claim_b": {"subject": "Grant", "attribute": "grant_amount", "value": 50000, "source_text": "Grant amount: $50,000.", "source": "Doc B"}
+  },
+  {
+    "id": "T13",
+    "topic": "employer_name",
+    "expected": "compatible",
+    "description": "Abbreviations and alternate names (ABC Tech vs ABC Technologies)",
+    "claim_a": {"subject": "Employer", "attribute": "employer_name", "value": "ABC Technologies", "source_text": "Employed by ABC Tech.", "source": "Doc A"},
+    "claim_b": {"subject": "Employer", "attribute": "employer_name", "value": "ABC Technologies", "source_text": "Employer: ABC Technologies Inc.", "source": "Doc B"}
+  },
+  {
+    "id": "T14",
+    "topic": "employment_type",
+    "expected": "contradiction",
+    "description": "Full-time vs Part-time",
+    "claim_a": {"subject": "Contract", "attribute": "employment_type", "value": "Full-time", "source_text": "Contract type: Full-time 40 hours per week.", "source": "Doc A"},
+    "claim_b": {"subject": "Contract", "attribute": "employment_type", "value": "Part-time", "source_text": "Employment status: Part-time intern.", "source": "Doc B"}
+  },
+  {
+    "id": "T15",
+    "topic": "reporting_manager",
+    "expected": "contradiction",
+    "description": "Reporting manager (Jane Doe vs John Smith)",
+    "claim_a": {"subject": "Team", "attribute": "reporting_manager", "value": "Jane Doe", "source_text": "Direct report to Jane Doe.", "source": "Doc A"},
+    "claim_b": {"subject": "Team", "attribute": "reporting_manager", "value": "John Smith", "source_text": "Supervisor was John Smith.", "source": "Doc B"}
+  },
+  {
+    "id": "T16",
+    "topic": "base_salary",
+    "expected": "compatible",
+    "description": "Equivalent salary formatting",
+    "claim_a": {"subject": "Compensation", "attribute": "base_salary", "value": 60000, "source_text": "Annual salary of 60,000 USD.", "source": "Doc A"},
+    "claim_b": {"subject": "Compensation", "attribute": "base_salary", "value": 60000, "source_text": "Base compensation: $60,000.", "source": "Doc B"}
+  },
+  {
+    "id": "T17",
+    "topic": "cgpa_score",
+    "expected": "contradiction",
+    "description": "Different GPA reported",
+    "claim_a": {"subject": "Academic", "attribute": "cgpa_score", "value": 8.9, "source_text": "Cumulative GPA: 8.9 / 10.0.", "source": "Doc A"},
+    "claim_b": {"subject": "Academic", "attribute": "cgpa_score", "value": 7.2, "source_text": "Verified GPA: 7.2 / 10.0.", "source": "Doc B"}
+  },
+  {
+    "id": "T18",
+    "topic": "future_expansion",
+    "expected": "insufficient_information",
+    "description": "Unverified speculation / missing value",
+    "claim_a": {"subject": "Company", "attribute": "future_expansion", "value": "Europe expansion planned", "source_text": "Company hopes to expand to Europe.", "source": "Doc A"},
+    "claim_b": {"subject": "Company", "attribute": "future_expansion", "value": null, "source_text": "No future geographical targets recorded.", "source": "Doc B"}
+  },
+  {
+    "id": "T19",
+    "topic": "experience_duration",
+    "expected": "compatible",
+    "description": "Approximate range (about 2 years vs 24 months)",
+    "claim_a": {"subject": "Experience", "attribute": "experience_duration", "value": "24 months", "source_text": "Possesses about 2 years of relevant experience.", "source": "Doc A"},
+    "claim_b": {"subject": "Experience", "attribute": "experience_duration", "value": "24 months", "source_text": "Documented 24 months of industry work.", "source": "Doc B"}
+  },
+  {
+    "id": "T20",
+    "topic": "core_language",
+    "expected": "contradiction",
+    "description": "Different programming languages",
+    "claim_a": {"subject": "Skills", "attribute": "core_language", "value": "Python", "source_text": "Primary backend language used was Python.", "source": "Doc A"},
+    "claim_b": {"subject": "Skills", "attribute": "core_language", "value": "Java", "source_text": "Built core services exclusively in Java.", "source": "Doc B"}
+  },
+  {
+    "id": "T21",
+    "topic": "university_name",
+    "expected": "compatible",
+    "description": "University abbreviation synonym",
+    "claim_a": {"subject": "Education", "attribute": "university_name", "value": "MIT", "source_text": "Graduated from MIT.", "source": "Doc A"},
+    "claim_b": {"subject": "Education", "attribute": "university_name", "value": "MIT", "source_text": "Degree conferred by Massachusetts Institute of Technology.", "source": "Doc B"}
+  },
+  {
+    "id": "T22",
+    "topic": "clearance_status",
+    "expected": "contradiction",
+    "description": "Clearance Granted vs Revoked",
+    "claim_a": {"subject": "Security", "attribute": "clearance_status", "value": "Granted", "source_text": "Security clearance granted on Jan 2024.", "source": "Doc A"},
+    "claim_b": {"subject": "Security", "attribute": "clearance_status", "value": "Revoked", "source_text": "Clearance status was revoked.", "source": "Doc B"}
+  },
+  {
+    "id": "T23",
+    "topic": "work_ethic",
+    "expected": "insufficient_information",
+    "description": "Subjective non-factual opinion",
+    "claim_a": {"subject": "Personality", "attribute": "work_ethic", "value": "Team player", "source_text": "Is known as a very cooperative team player.", "source": "Doc A"},
+    "claim_b": {"subject": "Personality", "attribute": "work_ethic", "value": null, "source_text": "No peer feedback documented.", "source": "Doc B"}
+  },
+  {
+    "id": "T24",
+    "topic": "notice_period",
+    "expected": "contradiction",
+    "description": "Notice period (30 days vs 90 days)",
+    "claim_a": {"subject": "Exit Policy", "attribute": "notice_period", "value": "30 days", "source_text": "Required notice period is 30 days.", "source": "Doc A"},
+    "claim_b": {"subject": "Exit Policy", "attribute": "notice_period", "value": "90 days", "source_text": "Standard notice requirement is 90 days.", "source": "Doc B"}
+  },
+  {
+    "id": "T25",
+    "topic": "publications",
+    "expected": "compatible",
+    "description": "Publication count equivalence",
+    "claim_a": {"subject": "Research", "attribute": "publications", "value": 3, "source_text": "Authored 3 peer-reviewed research papers.", "source": "Doc A"},
+    "claim_b": {"subject": "Research", "attribute": "publications", "value": 3, "source_text": "Published three papers in international conferences.", "source": "Doc B"}
+  }
+]
